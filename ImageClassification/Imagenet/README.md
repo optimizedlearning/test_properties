@@ -11,5 +11,10 @@ To install the rest of the packages, run `pip install -r requirements.txt`. If t
 Run `pip install torch` and then `pip install -r requirements.txt`.
 
 # Running the experiments
+To run the experiments, use the following command:
+```python3
+python main.py -a resnet18 --multiprocessing-distributed --world-size 1 --rank 0  /projectnb/aclab/tranhp/Imagenet/ --name imagenetLastEpochIterate
+```
+We can also change other hyperparameters such as learning rate, momentum, weight decay, or optimizers used, etc,... Refer to main.py for more information.
 
-
+# Current results
