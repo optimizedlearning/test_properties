@@ -1,7 +1,7 @@
 # Project overview
 In this project, we would like to check some common properties of the loss functions during training deep learning tasks. In theory, we usually assume the loss to be convex and smooth but that might not be the case due to deep neural networks. For simplicity, let us denote our model parameter as $x,y \in R^d$ and our loss function $f(x): R^d \mapsto R$. Then we want to check the following.
 + Convexity_gap: We compute the additive convexity gap in every iterate as $f(x_t) -f(y) - \langle \nabla f(x_t), x_t-y  \rangle$ where $x_t$ is the current iterate and $y$ is some reference point. We then report the average of this quantity in every epoch (negative convexity gap means the function is convex).
-+ Smoothness:  We compute the smoothness constant $L= \max\{previous_L, \|x_t -\nabla f(x_t)\|/\| \|y -\nabla f(y)\|\}$ where $x_t$ is the current iterate and $y$ is some reference point. We then report the maximum L of every epoch.
++ Smoothness:  We compute the smoothness constant $L= \|x_t -\nabla f(x_t)\|/\| \|y -\nabla f(y)\|$ where $x_t$ is the current iterate and $y$ is some reference point. We then report the maximum L of every epoch.
 + Ratio: We also compute the multiplicative convexity gap which is $\langle \nabla f(x_t), x_t-y  \rangle/(f(x_t) -f(y)) $. We then report the sum of the numerator/sum of the denominator in each epoch (our function is "well-behaved" if this ratio is a positive constant).
 # Installing Packages
 1. For BU SCC
