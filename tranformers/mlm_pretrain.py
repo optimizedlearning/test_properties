@@ -351,7 +351,8 @@ def compute_smoothness(model, prev_param, prev_grad, L):
 ####
 def main():
     args = parse_args()
-    datasets.config.DOWNLOADED_DATASETS_PATH = Path('/projectnb/aclab/tranhp/transformers/' + args.data_dir)
+    if args.data_dir is not None:
+        datasets.config.DOWNLOADED_DATASETS_PATH = Path( args.data_dir)
     wandb.init(project='test_convexity', config=args, name=args.name)
     # Sending telemetry. Tracking the example usage helps us better allocate resources to maintain them. The
     # information sent is the one passed as arguments along with your Python/PyTorch versions.
