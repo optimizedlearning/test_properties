@@ -20,4 +20,18 @@ mlm_finetune.py and mlm_pretrain.py are modified from run_mlm_no_trainer.py in h
 ####
 ```
 mlm_pretrain.py is also modified to load the base model without pretraining and to handle streamed datasets.
-
+# Run the script:
+One example run of mlm_finetune.py is as follows:
+```python3
+python mlm_finetune.py   --dataset_name wikitext --dataset_config_name wikitext-2-raw-v1 --model_name_or_path bert-base-cased\
+    --output_dir /projectnb/aclab/tranhp/transformers/finetune_With_wiki --num_train_epochs 5 --checkpointing_steps epoch \
+    --name finetuneonWiki --data_dir /projectnb/aclab/tranhp/wiki --with_tracking --report_to wandb
+```
+Example run of mlm_pretrain.py where we pretrain bert on c4 dataset:
+```python3
+python mlm_pretrain.py     --dataset_name c4  --dataset_config_name en --path /projectnb/aclab/datasets/c4/en   \
+    --model_name_or_path bert-base-cased     \
+--output_dir /projectnb/aclab/tranhp/transformers/examples/pytorch/language-modeling/c4Pretrained --num_train_epochs 50  \
+--checkpointing_steps epoch  --name pretrainWithC45e-4 --weight_decay 1e-5 --learning_rate   5e-4 --max_train_steps 500000 \
+--with_tracking --report_to wandb --streaming True
+```
