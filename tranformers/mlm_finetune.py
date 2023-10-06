@@ -81,11 +81,18 @@ MODEL_TYPES = tuple(conf.model_type for conf in MODEL_CONFIG_CLASSES)
 def parse_args():
     parser = argparse.ArgumentParser(description="Finetune a transformers model on a Masked Language Modeling task")
     #### Changed!
-    ## This argument specifies that directory that we download the data to.
+    ## This argument specifies the directory that we download the data to.
     parser.add_argument(
         "--data_dir",
         type=str,
         help="Path to datasets",
+        required=False,
+    )
+    ## Specify the directory to store checkpoint dictionary.
+    parser.add_argument(
+        "--store_dir",
+        type=str,
+        help="Path to Pytorch checkpoint",
         required=False,
     )
     ## Specifies the name of our run recorded by wandb
@@ -850,11 +857,19 @@ def main():
                 repo.push_to_hub(
                     commit_message=f"Training in progress epoch {epoch}", blocking=False, auto_lfs_prune=True
                 )
-
+        #### Changed!
+        ## The checkpoint dictionary of the original github doesn't have the loss. This is an extra dictionary to store the loss.
+        dic = {'loss': prev_loss, 'grad': prev_grad, 'param': prev_param}
+        ####
         if args.checkpointing_steps == "epoch":
             output_dir = f"epoch_{epoch}"
             if args.output_dir is not None:
                 output_dir = os.path.join(args.output_dir, output_dir)
+            #### Changed!
+            ## Save the dictionary
+            store_name = args.store_dir + str(epoch)+".pth.tar"
+            torch.save(dic, store_name)
+            ####
             accelerator.save_state(output_dir)
 
     if args.with_tracking:
