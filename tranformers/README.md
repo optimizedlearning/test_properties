@@ -1,5 +1,13 @@
-# Link to repo:
-Current experiments are run using https://github.com/mosaicml/examples/tree/main/examples/benchmarks/bert. 
-# To-do: Basically the same things we did in ImageClassification
-- Run through the training to get properties and consecutive iterates and all the check points.
-- Re-run and compute the properties with respect to the final iterate and last-epoch iterate.
+# Setup:
+1. The first option is to clone the original hugging face repo using git clone:
+```python3
+git clone https://github.com/huggingface/transformers.git
+```
+Then run: 
+```python3
+pip install -e .
+```
+(this allows us to install all the packages in editable mode).
+Finally, copy over the scripts in this repo to run experiments on specific tasks.
+
+2. Copy over the directory: /projectnb/aclab/tranhp/transformers/, install packages with `pip install -e .`,  and run the appropriate scripts.
