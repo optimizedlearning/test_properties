@@ -19,3 +19,5 @@ mlm_finetune.py and mlm_pretrain.py are modified from run_mlm_no_trainer.py in h
 <Modified block of code>
 ####
 ```
+mlm_pretrain.py is also modified to load the base model without pretraining and to handle streamed datasets.
+
