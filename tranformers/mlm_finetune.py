@@ -342,7 +342,7 @@ def main():
     args = parse_args()
     #### Changed!
     # this specifies the directory where we want to download the datasets (else it would be automatically downloaded to "~/.cache/huggingface/datasets/"), feel free to change the path. 
-    datasets.config.DOWNLOADED_DATASETS_PATH = Path('/projectnb/aclab/tranhp/transformers/' + args.data_dir) 
+    datasets.config.DOWNLOADED_DATASETS_PATH = Path(args.data_dir) 
     # Initialize the wandb run
     wandb.init(project='test_convexity', config=args, name=args.name)
     ####
