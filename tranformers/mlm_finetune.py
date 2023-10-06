@@ -99,7 +99,14 @@ def parse_args():
     parser.add_argument(
         "--name",
          type=str,
+        help="name of the wandb run",
         default="very_cool_experiment"
+    )
+    parser.add_argument(
+        "--line_by_line",
+        type=bool,
+        default=False,
+        help="Whether distinct lines of text in the dataset are to be handled as distinct sequences.",
     )
     ####
     parser.add_argument(
